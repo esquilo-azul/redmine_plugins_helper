@@ -16,9 +16,8 @@ module RedminePluginsHelper
 
     def check_database_version(dbv)
       lv = local_version(dbv[:timestamp])
-      if lv && lv.count == 1 && dbv[:plugin] != lv.first[:plugin]
-        move_plugin_version(dbv, lv.first[:plugin])
-      end
+      return unless lv && lv.count == 1 && dbv[:plugin] != lv.first[:plugin]
+      move_plugin_version(dbv, lv.first[:plugin])
     end
 
     def move_plugin_version(dbv, target_plugin)

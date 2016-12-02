@@ -1,6 +1,7 @@
 # coding: utf-8
 
 require 'redmine'
+require 'redmine_plugins_helper/patches/test_case_patch'
 
 Redmine::Plugin.register :redmine_plugins_helper do
   name 'Redmine Plugins\' Helper'

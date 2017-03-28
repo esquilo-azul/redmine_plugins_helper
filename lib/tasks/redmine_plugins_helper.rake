@@ -5,6 +5,11 @@ namespace :redmine do
       task fix: :environment do
         RedminePluginsHelper::FixMigrations.new
       end
+
+      desc 'Fix migrations moved from a plugin to another'
+      task status: :environment do
+        RedminePluginsHelper::StatusMigrations.new
+      end
     end
   end
 end

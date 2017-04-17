@@ -1,6 +1,10 @@
 Rake::Task['redmine:plugins:migrate'].clear
 
 namespace :redmine do
+  desc 'Migrates core app and installed plugins.'
+  task migrate: ['db:migrate', 'redmine:plugins:migrate:fix', 'redmine:plugins:migrate'] do
+  end
+
   namespace :plugins do
     desc 'Migrates installed plugins.'
     task migrate: :environment do

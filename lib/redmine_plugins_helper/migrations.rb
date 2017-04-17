@@ -24,9 +24,8 @@ module RedminePluginsHelper
       end
 
       def db_all_versions
-        ::ActiveRecord::Base.connection.select_values(
-          "SELECT version FROM #{ActiveRecord::Migrator.schema_migrations_table_name}"
-        )
+        ::ActiveRecord::SchemaMigration.create_table
+        ::ActiveRecord::SchemaMigration.all.pluck(:version)
       end
 
       def parse_plugin_version(v)

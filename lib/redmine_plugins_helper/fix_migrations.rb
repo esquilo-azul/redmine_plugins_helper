@@ -51,7 +51,7 @@ EOS
     def database_plugins_versions
       @database_plugins_versions = begin
         r = []
-        database_all_versions.each do |v|
+        ::RedminePluginsHelper::Migrations.db_all_versions.each do |v|
           pv = parse_plugin_version(v)
           next unless pv
           r << pv
@@ -61,19 +61,13 @@ EOS
     end
 
     def parse_plugin_version(v)
-      m = v.match(/^(\d+)\-(\S+)$/)
-      return nil unless m
-      { plugin: m[2].to_sym, timestamp: m[1].to_i, version: v }
+      h = ::RedminePluginsHelper::Migrations.parse_plugin_version(v)
+      h.merge!(version: v) if h.is_a?(Hash)
+      h
     end
 
     def plugin_version(plugin_id, timestamp)
       "#{timestamp}-#{plugin_id}"
-    end
-
-    def database_all_versions
-      ::ActiveRecord::Base.connection.select_values(
-        "SELECT version FROM #{ActiveRecord::Migrator.schema_migrations_table_name}"
-      )
     end
   end
 end

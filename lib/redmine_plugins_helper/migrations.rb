@@ -23,18 +23,16 @@ module RedminePluginsHelper
         r
       end
 
-      private
+      def db_all_versions
+        ::ActiveRecord::Base.connection.select_values(
+          "SELECT version FROM #{ActiveRecord::Migrator.schema_migrations_table_name}"
+        )
+      end
 
       def parse_plugin_version(v)
         m = v.match(/^(\d+)\-(\S+)$/)
         return nil unless m
         { plugin: m[2].to_sym, timestamp: m[1].to_i }
-      end
-
-      def db_all_versions
-        ::ActiveRecord::Base.connection.select_values(
-          "SELECT version FROM #{ActiveRecord::Migrator.schema_migrations_table_name}"
-        )
       end
     end
   end

@@ -9,6 +9,7 @@ namespace :redmine do
     desc 'Migrates installed plugins.'
     task migrate: :environment do
       RedminePluginsHelper::Migrate.new
+      Rake::Task['db:schema:dump'].invoke
     end
 
     namespace :migrate do

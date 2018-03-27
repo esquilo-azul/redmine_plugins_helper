@@ -24,6 +24,7 @@ module RedminePluginsHelper
 end
 
 unless ActiveSupport::TestCase.included_modules.include?(
-  RedminePluginsHelper::Patches::TestCasePatch)
+  RedminePluginsHelper::Patches::TestCasePatch
+)
   ActiveSupport::TestCase.send(:include, RedminePluginsHelper::Patches::TestCasePatch)
 end

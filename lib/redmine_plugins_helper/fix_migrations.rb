@@ -62,7 +62,7 @@ EOS
 
     def parse_plugin_version(v)
       h = ::RedminePluginsHelper::Migrations.parse_plugin_version(v)
-      h.merge!(version: v) if h.is_a?(Hash)
+      h[:version] = v if h.is_a?(Hash)
       h
     end
 

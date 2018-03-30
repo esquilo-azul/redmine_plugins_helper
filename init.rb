@@ -9,3 +9,8 @@ Redmine::Plugin.register :redmine_plugins_helper do
   description 'Helper for Redmine plugins'
   version '0.1.0'
 end
+
+Rails.configuration.to_prepare do
+  require_dependency 'redmine_plugins_helper/patches/redmine/plugin_patch'
+  ::Redmine::Plugin.registered_plugins.values.each(&:load_initializers)
+end

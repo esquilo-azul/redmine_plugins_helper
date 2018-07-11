@@ -1,0 +1,38 @@
+h1. Redmine Plugins Helper
+
+This plugin adds extra management functions for Redmine's plugins.
+
+h2. Requirements
+
+There is no other plugins required.
+Currently, there is no gems required (No Gemfile).
+Seems to work in Redmine's versions 3.0.3, 3.3.1 and 3.4.5.
+
+h2. Installation
+
+Just put this directory in folder "plugins" of Redmine.
+
+h2. Tasks
+
+|_. Name |_. Description |
+| @redmine:migrate@ | Run migrations of core Redmine and installed plugins. |
+| @redmine:plugins:migrate:fix@ | Fix migrations moved from a plugin to another. |
+| @redmine:plugins:migrate:status@ | Show migrations status of all plugins. |
+
+h2. Features for pĺugins
+
+h3. Initializers
+
+Just like other Rails applications or engines just put a initializer under the
+directory */config/initializers*.
+
+Note: plugins' initializers are runned after all plugins have registered.
+
+h4. Example
+
+File in *@/plugins/redmine_tasks_scheduler/config/initializers/assets.rb@*:
+
+<pre>
+Rails.application.config.assets.precompile += %w(active_scaffold.css)
+Rails.application.config.assets.precompile += %w(active_scaffold.js)
+</pre>

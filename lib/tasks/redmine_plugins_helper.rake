@@ -1,7 +1,7 @@
 Rake::Task['redmine:plugins:migrate'].clear
 
 namespace :redmine do
-  desc 'Migrates core app and installed plugins.'
+  desc 'Run migrations of core Redmine and installed plugins.'
   task migrate: ['db:migrate', 'redmine:plugins:migrate:fix', 'redmine:plugins:migrate'] do
   end
 
@@ -18,7 +18,7 @@ namespace :redmine do
         RedminePluginsHelper::FixMigrations.new
       end
 
-      desc 'Fix migrations moved from a plugin to another'
+      desc 'Show migrations status of all plugins'
       task status: :environment do
         RedminePluginsHelper::StatusMigrations.new
       end

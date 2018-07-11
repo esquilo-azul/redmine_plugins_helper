@@ -7,7 +7,7 @@ Redmine::Plugin.register :redmine_plugins_helper do
   name 'Redmine Plugins\' Helper'
   author 'Eduardo Henrique Bogoni'
   description 'Helper for Redmine plugins'
-  version '0.2.1'
+  version '0.3.0'
 end
 
 Rails.configuration.to_prepare do

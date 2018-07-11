@@ -5,7 +5,16 @@ module RedminePluginsHelper
         extend ActiveSupport::Concern
 
         included do
+          extend ClassMethods
           include InstanceMethods
+        end
+
+        module ClassMethods
+          def post_register(plugin_name, &block)
+            plugin = registered_plugins[plugin_name]
+            raise "Plugin not registered: #{plugin_name}" unless plugin
+            plugin.instance_eval(&block)
+          end
         end
 
         module InstanceMethods

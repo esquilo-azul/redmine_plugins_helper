@@ -36,3 +36,19 @@ File in *@/plugins/redmine_tasks_scheduler/config/initializers/assets.rb@*:
 Rails.application.config.assets.precompile += %w(active_scaffold.css)
 Rails.application.config.assets.precompile += %w(active_scaffold.js)
 </pre>
+
+h3. Post registration
+
+Allows to run code like in *@Redmine::Plugin.register@* environment, but after
+the plugin already is registered.
+
+h4. Example
+
+File in *@plugins/redmine_nonproject_modules/config/initializers/000_dependencies.rb@*:
+
+<pre>
+Redmine::Plugin.post_register :redmine_nonproject_modules do
+  # Source: https://github.com/esquilo-azul/redmine_plugins_helper
+  requires_redmine_plugin(:redmine_plugins_helper, version_or_higher: '0.3.0')
+end
+</pre>

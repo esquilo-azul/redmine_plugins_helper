@@ -17,16 +17,43 @@ module RedminePluginsHelper
     def check_database_version(dbv)
       lv = local_version(dbv[:timestamp])
       return unless lv && lv.count == 1 && dbv[:plugin] != lv.first[:plugin]
-      move_plugin_version(dbv, lv.first[:plugin])
+      fix_plugin_version(dbv, lv.first[:plugin])
     end
 
-    def move_plugin_version(dbv, target_plugin)
+    def fix_plugin_version(dbv, target_plugin)
       target_version = plugin_version(target_plugin, dbv[:timestamp])
-      Rails.logger.debug("Moving #{dbv[:version]} to plugin \"#{target_version}\"")
-      ::ActiveRecord::Base.connection.execute(<<EOS)
-update #{ActiveRecord::Migrator.schema_migrations_table_name}
-set version=#{ActiveRecord::Base.sanitize(target_version)}
-where version=#{ActiveRecord::Base.sanitize(dbv[:version])}
+      if database_version?(target_version)
+        remove_plugin_version(dbv[:version])
+      else
+        move_plugin_version(dbv[:version], target_version)
+      end
+    end
+
+    def database_version?(version)
+      r = ::ActiveRecord::Base.connection.execute(<<EOS.strip_heredoc)
+        select exists(
+          select 1
+          from #{ActiveRecord::Migrator.schema_migrations_table_name}
+          where version=#{ActiveRecord::Base.sanitize(version)}
+        )
+EOS
+      r.getvalue(0, 0) == 't'
+    end
+
+    def remove_plugin_version(source_version)
+      Rails.logger.info("Removing #{source_version}")
+      ::ActiveRecord::Base.connection.execute(<<EOS.strip_heredoc)
+        delete from #{ActiveRecord::Migrator.schema_migrations_table_name}
+        where version=#{ActiveRecord::Base.sanitize(source_version)}
+EOS
+    end
+
+    def move_plugin_version(source_version, target_version)
+      Rails.logger.info("Moving #{source_version} to plugin \"#{target_version}\"")
+      ::ActiveRecord::Base.connection.execute(<<EOS.strip_heredoc)
+        update #{ActiveRecord::Migrator.schema_migrations_table_name}
+        set version=#{ActiveRecord::Base.sanitize(target_version)}
+        where version=#{ActiveRecord::Base.sanitize(source_version)}
 EOS
     end
 

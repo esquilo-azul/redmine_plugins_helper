@@ -1,0 +1,5 @@
+<% Redmine::Plugin.registered_plugins.values.each do |plugin| %>
+  <% if plugin.main_javascript_asset_path %>
+    <% require_asset plugin.main_javascript_asset_path %>
+  <% end %>
+<% end %>

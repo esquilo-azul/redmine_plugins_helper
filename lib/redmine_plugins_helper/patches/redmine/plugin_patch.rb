@@ -42,6 +42,10 @@ module RedminePluginsHelper
             end
           end
 
+          def main_javascript_asset_path
+            find_asset(javascripts_directory, %w[js coffee js.coffee])
+          end
+
           def main_stylesheet_asset_path
             find_asset(stylesheets_directory, %w[css scss])
           end

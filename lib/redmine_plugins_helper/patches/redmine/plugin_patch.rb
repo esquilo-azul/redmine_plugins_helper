@@ -42,10 +42,24 @@ module RedminePluginsHelper
             end
           end
 
+          def main_stylesheet_asset_path
+            find_asset(stylesheets_directory, %w[css scss])
+          end
+
           private
 
           def initializers_directory
             File.join(directory, 'config', 'initializers')
+          end
+
+          def find_asset(assets_directory, extensions)
+            extensions.each do |extension|
+              ['', '.erb'].each do |erb_extension|
+                path = ::File.join(assets_directory, "#{id}.#{extension}#{erb_extension}")
+                return id if ::File.exist?(path)
+              end
+            end
+            nil
           end
         end
       end

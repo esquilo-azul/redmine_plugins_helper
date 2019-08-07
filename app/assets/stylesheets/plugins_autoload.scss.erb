@@ -1,0 +1,5 @@
+<% Redmine::Plugin.registered_plugins.values.each do |plugin| %>
+  <% if plugin.main_stylesheet_asset_path %>
+@import "<%= plugin.main_stylesheet_asset_path %>";
+  <% end %>
+<% end %>

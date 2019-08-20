@@ -1,3 +1,5 @@
+require 'sass-rails'
+
 module RedminePluginsHelper
   class << self
     def settings_table_exist?

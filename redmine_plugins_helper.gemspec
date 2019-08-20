@@ -13,4 +13,6 @@ Gem::Specification.new do |s|
   s.summary     = ::RedminePluginsHelper::SUMMARY
 
   s.files = Dir['{app,config,lib}/**/*', 'init.rb']
+
+  s.add_dependency 'sass-rails', '~> 5.0'
 end

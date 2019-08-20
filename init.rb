@@ -1,13 +1,14 @@
 # coding: utf-8
 
 require 'redmine'
+require 'redmine_plugins_helper/version'
 require 'redmine_plugins_helper/patches/test_case_patch'
 
 Redmine::Plugin.register :redmine_plugins_helper do
   name 'Redmine Plugins\' Helper'
-  author 'Eduardo Henrique Bogoni'
-  description 'Helper for Redmine plugins'
-  version '0.5.0'
+  author ::RedminePluginsHelper::AUTHOR
+  description ::RedminePluginsHelper::SUMMARY
+  version ::RedminePluginsHelper::VERSION
 end
 
 Rails.configuration.to_prepare do

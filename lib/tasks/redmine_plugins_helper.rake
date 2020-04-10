@@ -5,6 +5,15 @@ namespace :redmine do
   task migrate: ['db:migrate', 'redmine:plugins:migrate:fix', 'redmine:plugins:migrate'] do
   end
 
+  namespace :version do
+    desc 'Shows Redmine\'s version.'
+    task show: :environment do
+      puts ::Redmine::VERSION::STRING
+    end
+  end
+
+  task version: 'version:show'
+
   namespace :plugins do
     desc 'Migrates installed plugins.'
     task migrate: :environment do

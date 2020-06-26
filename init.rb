@@ -13,6 +13,7 @@ end
 
 Rails.configuration.to_prepare do
   require_dependency 'redmine_plugins_helper/patches/redmine/plugin_patch'
+  require_dependency 'redmine_plugins_helper/patches/redmine/plugin_migration_context'
   ::Redmine::Plugin.registered_plugins.values.each(&:add_assets_paths)
   ::Redmine::Plugin.registered_plugins.values.each(&:load_initializers)
 end

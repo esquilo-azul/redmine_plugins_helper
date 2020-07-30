@@ -30,31 +30,18 @@ module RedminePluginsHelper
     end
 
     def database_version?(version)
-      r = ::ActiveRecord::Base.connection.execute(<<EOS.strip_heredoc)
-        select exists(
-          select 1
-          from #{ActiveRecord::Migrator.schema_migrations_table_name}
-          where version=#{ActiveRecord::Base.sanitize(version)}
-        )
-EOS
-      r.getvalue(0, 0) == 't'
+      ::ActiveRecord::SchemaMigration.where(version: version).any?
     end
 
     def remove_plugin_version(source_version)
       Rails.logger.info("Removing #{source_version}")
-      ::ActiveRecord::Base.connection.execute(<<EOS.strip_heredoc)
-        delete from #{ActiveRecord::Migrator.schema_migrations_table_name}
-        where version=#{ActiveRecord::Base.sanitize(source_version)}
-EOS
+      ::ActiveRecord::SchemaMigration.find_by(version: source_version).destroy!
     end
 
     def move_plugin_version(source_version, target_version)
       Rails.logger.info("Moving #{source_version} to plugin \"#{target_version}\"")
-      ::ActiveRecord::Base.connection.execute(<<EOS.strip_heredoc)
-        update #{ActiveRecord::Migrator.schema_migrations_table_name}
-        set version=#{ActiveRecord::Base.sanitize(target_version)}
-        where version=#{ActiveRecord::Base.sanitize(source_version)}
-EOS
+      ::ActiveRecord::SchemaMigration.find_by(version: source_version)
+        .update!(version: target_version)
     end
 
     def local_version(timestamp)

@@ -7,6 +7,9 @@ module RedminePluginsHelper
 
       included do
         extend ClassMethods
+        include InstanceMethods
+        setup { mailer_setup }
+        teardown { mailer_teadown }
       end
 
       module ClassMethods
@@ -17,6 +20,23 @@ module RedminePluginsHelper
           )
           ActiveRecord::FixtureSet.create_fixtures(fixtures_dir, files)
           fixtures(*files)
+        end
+      end
+
+      module InstanceMethods
+        def mailer_setup
+          unless @mailer_perform_deliveries_changed
+            @mailer_perform_deliveries_changed = true
+            @mailer_perform_deliveries_was_enabled = ::ActionMailer::Base.perform_deliveries
+          end
+          ::ActionMailer::Base.perform_deliveries = false
+        end
+
+        def mailer_teadown
+          return unless @mailer_perform_deliveries_changed
+
+          ::ActionMailer::Base.perform_deliveries = @mailer_perform_deliveries_was_enabled
+          @mailer_perform_deliveries_changed = false
         end
       end
     end

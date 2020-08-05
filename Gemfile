@@ -12,4 +12,5 @@ end
 
 group :development, :test do
   gem 'eac_ruby_gem_support', '~> 0.1', '>= 0.1.2'
+  gem 'rack_session_access'
 end

@@ -8,8 +8,8 @@ module RedminePluginsHelper
       included do
         extend ClassMethods
         include InstanceMethods
-        setup { mailer_setup }
-        teardown { mailer_teadown }
+        setup { the_test_config.before_each }
+        teardown { the_test_config.after_each }
       end
 
       module ClassMethods
@@ -24,19 +24,8 @@ module RedminePluginsHelper
       end
 
       module InstanceMethods
-        def mailer_setup
-          unless @mailer_perform_deliveries_changed
-            @mailer_perform_deliveries_changed = true
-            @mailer_perform_deliveries_was_enabled = ::ActionMailer::Base.perform_deliveries
-          end
-          ::ActionMailer::Base.perform_deliveries = false
-        end
-
-        def mailer_teadown
-          return unless @mailer_perform_deliveries_changed
-
-          ::ActionMailer::Base.perform_deliveries = @mailer_perform_deliveries_was_enabled
-          @mailer_perform_deliveries_changed = false
+        def the_test_config
+          @the_test_config ||= ::RedminePluginsHelper::TestConfig.new
         end
       end
     end

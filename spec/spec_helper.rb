@@ -21,8 +21,5 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 end
 
-require 'capybara/rspec'
-require 'rack_session_access/capybara'
-
 require 'eac_ruby_utils/require_sub'
 ::EacRubyUtils.require_sub(__FILE__)

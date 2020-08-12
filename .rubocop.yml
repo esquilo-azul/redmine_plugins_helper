@@ -1,0 +1,29 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - test/**/*_test.rb
+  TargetRubyVersion: 2.4
+  TargetRailsVersion: 4.2
+
+Layout/LineLength:
+  Max: 100
+
+Metrics/BlockLength:
+  Exclude:
+    - lib/tasks/*.rake
+    - spec/**/*.rb
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module RedminePluginsHelper
   class Migrations
     class << self
       def local_versions
         r = {}
-        Redmine::Plugin.registered_plugins.values.each do |p|
+        Redmine::Plugin.registered_plugins.each_value do |p|
           p.migrations.each do |ts|
             r[p.id] ||= []
             r[p.id] << ts
@@ -17,6 +19,7 @@ module RedminePluginsHelper
         db_all_versions.each do |v|
           pv = parse_plugin_version(v)
           next unless pv
+
           r[pv[:plugin]] ||= []
           r[pv[:plugin]] << pv[:timestamp]
         end
@@ -28,9 +31,10 @@ module RedminePluginsHelper
         ::ActiveRecord::SchemaMigration.all.pluck(:version)
       end
 
-      def parse_plugin_version(v)
-        m = v.match(/^(\d+)\-(\S+)$/)
+      def parse_plugin_version(version)
+        m = version.match(/^(\d+)\-(\S+)$/)
         return nil unless m
+
         { plugin: m[2].to_sym, timestamp: m[1].to_i }
       end
     end

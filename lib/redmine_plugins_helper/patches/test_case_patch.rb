@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support'
 
 module RedminePluginsHelper
@@ -35,5 +37,5 @@ end
 unless ActiveSupport::TestCase.included_modules.include?(
   RedminePluginsHelper::Patches::TestCasePatch
 )
-  ActiveSupport::TestCase.send(:include, RedminePluginsHelper::Patches::TestCasePatch)
+  ActiveSupport::TestCase.include RedminePluginsHelper::Patches::TestCasePatch
 end

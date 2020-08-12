@@ -30,10 +30,10 @@ module RedminePluginsHelper
       ::Redmine::Plugin.migrate(plugin_name, migration_version)
     end
 
-    def migrate_plugin_version(v)
-      return if migrated?(v)
+    def migrate_plugin_version(version)
+      return if migrated?(version)
 
-      ::Redmine::Plugin.registered_plugins[v[:plugin]].migrate(v[:timestamp])
+      ::Redmine::Plugin.registered_plugins[version[:plugin]].migrate(version[:timestamp])
     end
 
     def versions_sorted
@@ -48,9 +48,10 @@ module RedminePluginsHelper
       r
     end
 
-    def migrated?(v)
-      return false unless db_versions.key?(v[:plugin])
-      db_versions[v[:plugin]].include?(v[:timestamp])
+    def migrated?(version)
+      return false unless db_versions.key?(version[:plugin])
+
+      db_versions[version[:plugin]].include?(version[:timestamp])
     end
 
     def db_versions

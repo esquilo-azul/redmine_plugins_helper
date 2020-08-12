@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RedminePluginsHelper
   class StatusMigrations
     def initialize
@@ -10,7 +12,7 @@ module RedminePluginsHelper
       local_versions.each do |plugin, timestamps|
         timestamps.each do |timestamp|
           m = migrated_version?(plugin, timestamp) ? 'up' : 'down'
-          puts "#{m}\t#{plugin}\t#{timestamp}"
+          ::Rails.logger.info "#{m}\t#{plugin}\t#{timestamp}"
         end
       end
     end

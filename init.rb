@@ -1,4 +1,4 @@
-# coding: utf-8
+# frozen_string_literal: true
 
 require 'redmine'
 require 'redmine_plugins_helper/version'

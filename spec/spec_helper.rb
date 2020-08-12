@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 require ::File.expand_path('../../../config/environment', __dir__)
 abort('The Rails environment is not running in test mode!') unless Rails.env.test?
@@ -20,7 +22,7 @@ RSpec.configure do |config|
 end
 
 require 'capybara/rspec'
-require "rack_session_access/capybara"
+require 'rack_session_access/capybara'
 
 def test_config_class(plugin_name)
   ::Object.const_get(plugin_name.to_s.camelcase).const_get('TestConfig')
@@ -36,9 +38,10 @@ end
 ::Redmine::Plugin.registered_plugins.each_key do |plugin|
   instance = test_config_instance(plugin)
   next unless instance
+
   RSpec.configure do |config|
-    [:before, :after].each do |prefix|
-      [:each, :all].each do |suffix|
+    %i[before after].each do |prefix|
+      %i[each all].each do |suffix|
         method = "#{prefix}_#{suffix}".to_sym
         config.send(prefix, suffix) { instance.send(method) } if instance.respond_to?(method)
       end

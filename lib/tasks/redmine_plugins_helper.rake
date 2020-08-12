@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rake::Task['redmine:plugins:migrate'].clear
 
 namespace :redmine do

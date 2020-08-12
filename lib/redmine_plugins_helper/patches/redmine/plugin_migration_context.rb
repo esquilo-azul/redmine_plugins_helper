@@ -8,7 +8,7 @@ module RedminePluginsHelper
       module PluginMigrationContextPatch
         extend ActiveSupport::Concern
 
-        def get_all_versions
+        def get_all_versions # rubocop:disable Naming/AccessorMethodName
           plugin.present? ? plugin.migrations : super
         end
 

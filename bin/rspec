@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+rails_root = ::File.dirname(::File.dirname(::File.dirname(__dir__)))
+bundle_command = ::File.join(rails_root, 'bin', 'bundle')
+exit(1) unless system(bundle_command, 'exec', 'rspec', '--default-path',
+                      'plugins/redmine_plugins_helper/spec', '--require', 'spec_helper', *ARGV)

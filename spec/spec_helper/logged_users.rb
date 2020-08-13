@@ -10,5 +10,5 @@ RSpec.shared_examples 'with logged user', shared_context: :metadata do |username
     find_by_id('login-submit').click # rubocop:disable Rails/DynamicFindBy
   end
 
-  it('User.current is filled') { expect(::User.current).not_to be_nil }
+  it("logged user has login \"#{username}\"") { expect(::User.current.login).to eq(username) }
 end

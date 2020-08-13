@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'with logged user', shared_context: :metadata do |username|
+  fixtures :users
+
   before do
     visit '/login'
     fill_in 'username', with: username

@@ -12,7 +12,7 @@ module RedminePluginsHelper
       local_versions.each do |plugin, timestamps|
         timestamps.each do |timestamp|
           m = migrated_version?(plugin, timestamp) ? 'up' : 'down'
-          ::Rails.logger.info "#{m}\t#{plugin}\t#{timestamp}"
+          puts "#{m}\t#{plugin}\t#{timestamp}" # rubocop:disable Rails/Output
         end
       end
     end

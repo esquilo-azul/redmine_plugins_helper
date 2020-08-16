@@ -9,9 +9,3 @@ plugins_root.each_child.sort.each do |plugin|
 
   gem plugin.basename.to_s, path: plugin.relative_path_from(helper_root).to_s
 end
-
-group :development, :test do
-  gem 'eac_ruby_gem_support', '~> 0.1', '>= 0.1.2'
-  gem 'launchy'
-  gem 'rspec-rails'
-end

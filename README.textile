@@ -5,8 +5,7 @@ This plugin adds extra management functions for Redmine's plugins.
 h2. Requirements
 
 There is no other plugins required.
-Currently, there is no gems required (No Gemfile).
-Seems to work in Redmine's versions 3.0.3, 3.3.1 and 3.4.5.
+Seems to work in Redmine's versions 3.X and 4.X.
 
 h2. Installation
 

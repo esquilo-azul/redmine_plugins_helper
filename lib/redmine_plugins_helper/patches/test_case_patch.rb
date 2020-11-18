@@ -8,21 +8,10 @@ module RedminePluginsHelper
       extend ActiveSupport::Concern
 
       included do
-        extend ClassMethods
+        extend ::RedminePluginsHelper::TestHelper
         include InstanceMethods
         setup { the_test_config.before_each }
         teardown { the_test_config.after_each }
-      end
-
-      module ClassMethods
-        def plugin_fixtures(plugin_name, *files)
-          fixtures_dir = File.expand_path(
-            'test/fixtures',
-            ::Redmine::Plugin.registered_plugins[plugin_name].directory
-          )
-          ActiveRecord::FixtureSet.create_fixtures(fixtures_dir, files)
-          fixtures(*files)
-        end
       end
 
       module InstanceMethods

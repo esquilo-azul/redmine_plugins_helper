@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-return if ::Redmine::VERSION.to_s < '4'
-
 require_dependency 'user'
 
 module UserCurrentPatch

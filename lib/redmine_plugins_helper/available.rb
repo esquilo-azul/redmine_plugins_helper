@@ -16,6 +16,10 @@ module RedminePluginsHelper
       def table?(table_name)
         database? && ::ActiveRecord::Base.connection.table_exists?(table_name)
       end
+
+      def settings?
+        model?(::Setting)
+      end
     end
   end
 end

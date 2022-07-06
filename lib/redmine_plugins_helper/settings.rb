@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_dependency 'redmine_plugins_helper'
+require_dependency 'redmine_plugins_helper/available'
 
 module RedminePluginsHelper
   class Settings
     class << self
       def default(plugin, default)
-        return unless ::RedminePluginsHelper.settings_table_exist?
+        return unless ::RedminePluginsHelper::Available.settings?
 
         p = plugin_current_setting_value(plugin)
         default.each do |k, v|

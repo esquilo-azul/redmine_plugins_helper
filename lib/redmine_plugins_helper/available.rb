@@ -15,8 +15,10 @@ module RedminePluginsHelper
         table?(model_class.table_name)
       end
 
-      def table?(table_name)
-        database? && ::ActiveRecord::Base.connection.table_exists?(table_name)
+      def table?(*table_names)
+        return false unless database?
+
+        table_names.all? { |table_name| ::ActiveRecord::Base.connection.table_exists?(table_name) }
       end
 
       def settings?

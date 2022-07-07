@@ -11,8 +11,8 @@ module RedminePluginsHelper
         true
       end
 
-      def model?(model_class)
-        table?(model_class.table_name)
+      def model?(*model_classes)
+        table?(*model_classes.map(&:table_name))
       end
 
       def table?(*table_names)

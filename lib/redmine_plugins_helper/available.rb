@@ -11,6 +11,10 @@ module RedminePluginsHelper
         true
       end
 
+      def database_schema?
+        database? && ::RedminePluginsHelper::Migration.from_code.all?(&:applied?)
+      end
+
       def model?(*model_classes)
         table?(*model_classes.map(&:table_name))
       end

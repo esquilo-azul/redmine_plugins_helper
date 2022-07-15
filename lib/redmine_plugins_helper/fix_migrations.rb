@@ -54,7 +54,7 @@ module RedminePluginsHelper
     end
 
     def local_versions
-      @local_versions = begin
+      @local_versions ||= begin
         r = {}
         Redmine::Plugin.registered_plugins.each_value do |p|
           p.migrations.each do |m|

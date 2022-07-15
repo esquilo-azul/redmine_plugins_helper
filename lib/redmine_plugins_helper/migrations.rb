@@ -5,11 +5,9 @@ module RedminePluginsHelper
     class << self
       def local_versions
         r = {}
-        Redmine::Plugin.registered_plugins.each_value do |p|
-          p.migrations.each do |ts|
-            r[p.id] ||= []
-            r[p.id] << ts
-          end
+        ::RedminePluginsHelper::Migration.from_code.select(&:plugin?).each do |migration|
+          r[migration.plugin_id] ||= []
+          r[migration.plugin_id] << migration.version
         end
         r
       end

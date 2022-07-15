@@ -67,22 +67,8 @@ module RedminePluginsHelper
     end
 
     def database_plugins_versions
-      @database_plugins_versions ||= begin
-        r = []
-        ::RedminePluginsHelper::Migrations.db_all_versions.each do |v|
-          pv = parse_plugin_version(v)
-          next unless pv
-
-          r << pv
-        end
-        r
-      end
-    end
-
-    def parse_plugin_version(version)
-      h = ::RedminePluginsHelper::Migrations.parse_plugin_version(version)
-      h[:version] = version if h.is_a?(Hash)
-      h
+      @database_plugins_versions ||= ::RedminePluginsHelper::Migration
+                                     .from_database.select(&:plugin?).map(&:version)
     end
 
     def plugin_version(plugin_id, timestamp)

@@ -67,7 +67,7 @@ module RedminePluginsHelper
     end
 
     def database_plugins_versions
-      @database_plugins_versions = begin
+      @database_plugins_versions ||= begin
         r = []
         ::RedminePluginsHelper::Migrations.db_all_versions.each do |v|
           pv = parse_plugin_version(v)

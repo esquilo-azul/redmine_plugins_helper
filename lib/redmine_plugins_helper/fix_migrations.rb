@@ -43,8 +43,8 @@ module RedminePluginsHelper
 
     def move_plugin_version(source_version, target_version)
       Rails.logger.info("Moving #{source_version} to plugin \"#{target_version}\"")
-      ::ActiveRecord::SchemaMigration.find_by(version: source_version)
-                                     .update!(version: target_version)
+      ::ActiveRecord::SchemaMigration.where(version: source_version)
+                                     .update_all(version: target_version) # rubocop:disable Rails/SkipsModelValidations
     end
 
     def local_version(timestamp)
@@ -68,7 +68,9 @@ module RedminePluginsHelper
 
     def database_plugins_versions
       @database_plugins_versions ||= ::RedminePluginsHelper::Migration
-                                     .from_database.select(&:plugin?).map(&:version)
+                                     .from_database.select(&:plugin?).map do |m|
+        { plugin: m.plugin_id, timestamp: m.version, version: m.database_version }
+      end
     end
 
     def plugin_version(plugin_id, timestamp)

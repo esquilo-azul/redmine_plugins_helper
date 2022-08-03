@@ -2,7 +2,7 @@
 
 module RedminePluginsHelper
   class FixMigrations
-    def run
+    def perform
       database_plugins_versions.each do |dbv|
         check_database_version(dbv)
       end

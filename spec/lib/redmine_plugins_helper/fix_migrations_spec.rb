@@ -43,7 +43,7 @@ require 'redmine_plugins_helper/fix_migrations'
       end
 
       before do
-        instance.run
+        instance.perform
       end
 
       it do

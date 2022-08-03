@@ -42,7 +42,7 @@ namespace :redmine do
     namespace :migrate do
       desc 'Fix migrations moved from a plugin to another'
       task fix: :environment do
-        ::RedminePluginsHelper::FixMigrations.new.run
+        ::RedminePluginsHelper::FixMigrations.new.perform
       end
 
       desc 'Show migrations status of all plugins'

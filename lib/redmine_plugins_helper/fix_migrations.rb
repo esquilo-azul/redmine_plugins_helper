@@ -2,12 +2,6 @@
 
 module RedminePluginsHelper
   class FixMigrations
-    def initialize
-      run
-    end
-
-    private
-
     def run
       database_plugins_versions.each do |dbv|
         check_database_version(dbv)
@@ -15,6 +9,8 @@ module RedminePluginsHelper
       Rails.logger.info("Database versions checked: #{database_plugins_versions.count}")
       Rails.logger.info("Local versions found: #{local_versions.count}")
     end
+
+    private
 
     def check_database_version(dbv)
       lv = local_version(dbv[:timestamp])

@@ -12,6 +12,7 @@ module RedminePluginsHelper
           extend ClassMethods
           include InstanceMethods
           include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Assets
+          include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Initializers
         end
 
         module ClassMethods
@@ -36,18 +37,6 @@ module RedminePluginsHelper
             raise "Plugin not registered: #{plugin_name}" unless plugin
 
             plugin.instance_eval(&block)
-          end
-        end
-
-        module InstanceMethods
-          def load_initializers
-            Dir["#{initializers_directory}/*.rb"].sort.each { |f| require f }
-          end
-
-          private
-
-          def initializers_directory
-            File.join(directory, 'config', 'initializers')
           end
         end
       end

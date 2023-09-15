@@ -12,6 +12,7 @@ module RedminePluginsHelper
           extend ClassMethods
           include InstanceMethods
           include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Assets
+          prepend ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Dependencies
           include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Initializers
         end
 

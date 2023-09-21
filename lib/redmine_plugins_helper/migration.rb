@@ -28,6 +28,11 @@ module RedminePluginsHelper
       plugin_id == PLUGIN_ID_CORE_VALUE
     end
 
+    # @return [Redmine::Plugin]
+    def plugin
+      plugin? ? ::Redmine::Plugin.find(plugin_id) : nil
+    end
+
     # @return [Boolean]
     def plugin?
       !core?

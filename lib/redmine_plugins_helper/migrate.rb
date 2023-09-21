@@ -19,41 +19,21 @@ module RedminePluginsHelper
     end
 
     def run_all
-      versions_sorted.each do |v|
-        migrate_plugin_version(v)
-      end
+      versions_sorted.each(&:apply)
     end
 
     def run_version
       ::Redmine::Plugin.migrate(plugin_name, migration_version)
     end
 
-    def migrate_plugin_version(version)
-      return if migrated?(version)
-
-      ::Redmine::Plugin.registered_plugins[version[:plugin]].migrate(version[:timestamp])
-    end
-
+    # @return [Enumerable<RedminePluginsHelper::Migration>]
     def versions_sorted
-      versions.sort_by { |e| [e[:timestamp]] }
+      versions.sort
     end
 
+    # @return [Enumerable<RedminePluginsHelper::Migration>]
     def versions
-      r = []
-      ::RedminePluginsHelper::Migrations.local_versions.each do |plugin, ts|
-        ts.each { |t| r << { plugin: plugin, timestamp: t } }
-      end
-      r
-    end
-
-    def migrated?(version)
-      return false unless db_versions.key?(version[:plugin])
-
-      db_versions[version[:plugin]].include?(version[:timestamp])
-    end
-
-    def db_versions
-      @db_versions ||= ::RedminePluginsHelper::Migrations.db_versions
+      ::RedminePluginsHelper::Migration.from_code.select(&:plugin?)
     end
   end
 end

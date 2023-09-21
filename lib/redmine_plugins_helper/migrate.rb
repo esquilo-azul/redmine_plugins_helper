@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/core_ext'
+
 module RedminePluginsHelper
   class Migrate
-    attr_reader :plugin_name, :migration_version
-
-    def initialize(plugin_name, migration_version)
-      @plugin_name = plugin_name
-      @migration_version = migration_version
+    common_constructor :plugin_name, :migration_version do
       run
     end
 

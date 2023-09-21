@@ -12,6 +12,18 @@ module RedminePluginsHelper
     end
     compare_by :version, :plugin_id
 
+    # @return [void]
+    def apply
+      return if applied?
+
+      nyi unless plugin?
+
+      ::Redmine::Plugin::Migrator.current_plugin = plugin
+      ::Redmine::Plugin::MigrationContext.new(plugin.migration_directory).up do |m|
+        m.version == version
+      end
+    end
+
     # @return [Boolean]
     def applied?
       ::ActiveRecord::SchemaMigration.create_table

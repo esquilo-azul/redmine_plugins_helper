@@ -10,6 +10,7 @@ module RedminePluginsHelper
       self.plugin_id = plugin_id.to_sym
       self.version = version.to_i
     end
+    compare_by :version, :plugin_id
 
     # @return [Boolean]
     def applied?

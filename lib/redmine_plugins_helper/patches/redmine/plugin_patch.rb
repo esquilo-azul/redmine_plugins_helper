@@ -10,7 +10,6 @@ module RedminePluginsHelper
 
         included do
           extend ClassMethods
-          include InstanceMethods
           include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Assets
           prepend ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Dependencies
           include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Initializers
@@ -40,6 +39,8 @@ module RedminePluginsHelper
             plugin.instance_eval(&block)
           end
         end
+
+        require_sub __FILE__
       end
     end
   end

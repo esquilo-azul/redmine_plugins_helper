@@ -9,7 +9,7 @@ module RedminePluginsHelper
     class Minitest < ::RedminePluginsHelper::TestTasks::Base
       def register
         ::Rake::TestTask.new(task_full_name => 'db:test:prepare') do |t|
-          t.description = "Run plugin #{plugin_id}\'s tests."
+          t.description = "Run plugin #{plugin_id}'s tests."
           t.libs << 'test'
           t.test_files = ::FileList["#{plugin_root}/test/**/*_test.rb"]
           t.verbose = false

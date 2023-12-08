@@ -8,7 +8,7 @@ end
 
 def test_config_instance(plugin_name)
   klass = test_config_class(plugin_name)
-  klass ? klass.new : nil
+  klass&.new
 end
 
 Redmine::Plugin.registered_plugins.each_key do |plugin|

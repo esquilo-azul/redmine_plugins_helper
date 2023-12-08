@@ -27,10 +27,10 @@ module UserCurrentPatch
   attr_accessor :patched_current_user
 end
 
-::User.extend ::UserCurrentPatch
+User.extend UserCurrentPatch
 
-::RSpec.configure do |config|
+RSpec.configure do |config|
   config.after do
-    ::User.current = nil
+    User.current = nil
   end
 end

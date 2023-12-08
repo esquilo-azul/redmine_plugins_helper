@@ -1,24 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantConstantBase:
-  Exclude:
-  - Gemfile
-  - bin/rspec
-  - config/initializers/ruby_2_7_rails_4_column_dumper.rb
-  - init.rb
-  - lib/redmine_plugins_helper/patches/redmine/plugin_migration_context.rb
-  - lib/redmine_plugins_helper/patches/redmine/plugin_patch.rb
-  - lib/tasks/redmine.rake
-  - lib/tasks/redmine_plugins_helper.rake
-  - redmine_plugins_helper.gemspec
-  - spec/lib/redmine_plugins_helper/fix_migrations_spec.rb
-  - spec/lib/redmine_plugins_helper/patches/redmine/plugin_patch_spec.rb
-  - spec/spec_helper/logged_users.rb
-  - spec/spec_helper/plugins_test_configs.rb
-  - spec/spec_helper/test_helper.rb
-  - spec/spec_helper/user_current_patch.rb
-  - spec/spec_helper.rb
 Style/RedundantRegexpEscape:
   Exclude:
   - lib/redmine_plugins_helper/migration/code.rb

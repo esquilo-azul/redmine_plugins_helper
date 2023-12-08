@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 def test_config_class(plugin_name)
-  ::Object.const_get(plugin_name.to_s.camelcase).const_get('TestConfig')
-rescue ::NameError
+  Object.const_get(plugin_name.to_s.camelcase).const_get('TestConfig')
+rescue NameError
   nil
 end
 
@@ -11,7 +11,7 @@ def test_config_instance(plugin_name)
   klass ? klass.new : nil
 end
 
-::Redmine::Plugin.registered_plugins.each_key do |plugin|
+Redmine::Plugin.registered_plugins.each_key do |plugin|
   instance = test_config_instance(plugin)
   next unless instance
 

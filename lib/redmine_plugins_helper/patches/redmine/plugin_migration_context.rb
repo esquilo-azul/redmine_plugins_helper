@@ -24,8 +24,8 @@ module RedminePluginsHelper
   end
 end
 
-if ::Redmine::Plugin.const_defined?('MigrationContext')
-  ::Redmine::Plugin::MigrationContext.prepend(
-    ::RedminePluginsHelper::Patches::Redmine::PluginMigrationContextPatch
+if Redmine::Plugin.const_defined?('MigrationContext')
+  Redmine::Plugin::MigrationContext.prepend(
+    RedminePluginsHelper::Patches::Redmine::PluginMigrationContextPatch
   )
 end

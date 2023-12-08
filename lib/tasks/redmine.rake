@@ -9,7 +9,7 @@ namespace :redmine do # rubocop:disable Metrics/BlockLength
   namespace :version do
     desc 'Shows Redmine\'s version.'
     task show: :environment do
-      puts ::Redmine::VERSION::STRING
+      puts Redmine::VERSION::STRING
     end
   end
 
@@ -41,7 +41,7 @@ namespace :redmine do # rubocop:disable Metrics/BlockLength
     namespace :migrate do
       desc 'Fix migrations moved from a plugin to another'
       task fix: :environment do
-        ::RedminePluginsHelper::FixMigrations.new.perform
+        RedminePluginsHelper::FixMigrations.new.perform
       end
 
       desc 'Show migrations status of all plugins'

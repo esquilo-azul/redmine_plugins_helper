@@ -8,9 +8,9 @@ require 'redmine_plugins_helper/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'redmine_plugins_helper'
-  s.version     = ::RedminePluginsHelper::VERSION
-  s.authors     = [::RedminePluginsHelper::VERSION]
-  s.summary     = ::RedminePluginsHelper::SUMMARY
+  s.version     = RedminePluginsHelper::VERSION
+  s.authors     = [RedminePluginsHelper::VERSION]
+  s.summary     = RedminePluginsHelper::SUMMARY
 
   s.files = Dir['{app,config,lib}/**/*', 'init.rb']
   s.required_ruby_version = '>= 2.7'

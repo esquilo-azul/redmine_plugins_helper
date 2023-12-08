@@ -10,5 +10,5 @@ RSpec.shared_examples 'with logged user', shared_context: :metadata do |username
     find_by_id('login-submit').click
   end
 
-  it("logged user has login \"#{username}\"") { expect(::User.current.login).to eq(username) }
+  it("logged user has login \"#{username}\"") { expect(User.current.login).to eq(username) }
 end

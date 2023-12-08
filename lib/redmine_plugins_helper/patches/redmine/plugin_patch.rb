@@ -46,6 +46,6 @@ module RedminePluginsHelper
   end
 end
 
-patch = ::RedminePluginsHelper::Patches::Redmine::PluginPatch
-target = ::Redmine::Plugin
+patch = RedminePluginsHelper::Patches::Redmine::PluginPatch
+target = Redmine::Plugin
 target.send(:include, patch) unless target.include?(patch)

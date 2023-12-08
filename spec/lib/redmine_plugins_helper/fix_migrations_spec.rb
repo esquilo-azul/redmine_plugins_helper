@@ -32,8 +32,7 @@ require 'redmine_plugins_helper/fix_migrations'
           [:redmine_plugins_helper, 20_220_102_030_402],
           [:redmine_plugins_helper, 20_220_102_030_403]
 
-        ].map { |lv| [lv[1], [{ plugin: lv[0], timestamp: lv[1], version: "#{lv[1]}-#{lv[0]}" }]] }
-          .to_h
+        ].to_h { |lv| [lv[1], [{ plugin: lv[0], timestamp: lv[1], version: "#{lv[1]}-#{lv[0]}" }]] }
       end
 
       let(:instance) do

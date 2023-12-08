@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantAssignment:
-  Exclude:
-  - lib/redmine_plugins_helper/settings.rb
 Style/RedundantBegin:
   Exclude:
   - lib/redmine_plugins_helper/patches/redmine/plugin_migration_context.rb

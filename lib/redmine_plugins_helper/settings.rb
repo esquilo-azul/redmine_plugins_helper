@@ -20,8 +20,7 @@ module RedminePluginsHelper
       def plugin_current_setting_value(plugin)
         p = ::Setting.send("plugin_#{plugin}")
         p = {} unless p.is_a?(::Hash)
-        p = p.with_indifferent_access
-        p
+        p.with_indifferent_access
       end
     end
   end

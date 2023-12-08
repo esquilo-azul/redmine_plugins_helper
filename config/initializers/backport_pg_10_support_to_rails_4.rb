@@ -36,7 +36,7 @@ module ActiveRecord
 
           if postgresql_version >= 100_000
             select_value('SELECT seqmin FROM pg_sequence WHERE seqrelid = ' \
-                "#{quote(quoted_sequence)}::regclass")
+                         "#{quote(quoted_sequence)}::regclass")
           else
             select_value("SELECT min_value FROM #{quoted_sequence}")
           end

@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = ::RedminePluginsHelper::SUMMARY
 
   s.files = Dir['{app,config,lib}/**/*', 'init.rb']
+  s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'bigdecimal', '~> 1.4', '>= 1.4.4'
   s.add_dependency 'eac_rails_gem_support', '~> 0.9'

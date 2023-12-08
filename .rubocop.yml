@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Gemspec/RequiredRubyVersion:
-  Exclude:
-  - redmine_plugins_helper.gemspec
 Layout/LeadingCommentSpace:
   Exclude:
   - config/initializers/backport_pg_10_support_to_rails_4.rb

@@ -18,7 +18,7 @@ end
   RSpec.configure do |config|
     %i[before after].each do |prefix|
       %i[each all].each do |suffix|
-        method = "#{prefix}_#{suffix}".to_sym
+        method = :"#{prefix}_#{suffix}"
         config.send(prefix, suffix) { instance.send(method) } if instance.respond_to?(method)
       end
     end

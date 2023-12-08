@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Lint/SymbolConversion:
-  Exclude:
-  - spec/spec_helper/plugins_test_configs.rb
 Metrics/BlockLength:
   Exclude:
   - lib/tasks/redmine.rake

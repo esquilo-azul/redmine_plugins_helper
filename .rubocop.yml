@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantRegexpEscape:
-  Exclude:
-  - lib/redmine_plugins_helper/migration/code.rb
-  - lib/redmine_plugins_helper/migration/database.rb
 Style/RedundantStringEscape:
   Exclude:
   - lib/redmine_plugins_helper/test_tasks/minitest.rb

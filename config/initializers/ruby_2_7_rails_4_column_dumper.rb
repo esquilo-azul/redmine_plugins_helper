@@ -7,7 +7,7 @@ return unless RUBY_VERSION >= '2.7' && ::Rails.version < '5'
 module ActiveRecord
   module ConnectionAdapters
     module ColumnDumper
-      def prepare_column_options(column, types) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+      def prepare_column_options(column, types) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
         spec = {}
         spec[:name]      = column.name.inspect
         spec[:type]      = column.type.to_s

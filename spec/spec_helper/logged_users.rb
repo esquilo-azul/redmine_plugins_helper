@@ -7,7 +7,7 @@ RSpec.shared_examples 'with logged user', shared_context: :metadata do |username
     visit '/login'
     fill_in 'username', with: username
     fill_in 'password', with: username
-    find_by_id('login-submit').click # rubocop:disable Rails/DynamicFindBy
+    find_by_id('login-submit').click
   end
 
   it("logged user has login \"#{username}\"") { expect(::User.current.login).to eq(username) }

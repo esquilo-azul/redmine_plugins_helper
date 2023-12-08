@@ -1,29 +1,92 @@
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
+---
+inherit_gem:
+  eac_ruby_gem_support: ".rubocop.yml"
+Gemspec/RequiredRubyVersion:
   Exclude:
-    - test/**/*_test.rb
-  TargetRubyVersion: 2.4
-  TargetRailsVersion: 4.2
-
-Layout/LineLength:
-  Max: 100
-
+  - redmine_plugins_helper.gemspec
+Layout/LeadingCommentSpace:
+  Exclude:
+  - config/initializers/backport_pg_10_support_to_rails_4.rb
+Layout/LineEndStringConcatenationIndentation:
+  Exclude:
+  - config/initializers/backport_pg_10_support_to_rails_4.rb
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+  - lib/redmine_plugins_helper/fix_migrations.rb
+  - lib/redmine_plugins_helper/migration/code.rb
+  - lib/redmine_plugins_helper/migration/database.rb
+Lint/EmptyBlock:
+  Exclude:
+  - lib/tasks/redmine.rake
+Lint/RedundantCopDisableDirective:
+  Exclude:
+  - config/initializers/ruby_2_7_rails_4_column_dumper.rb
+  - lib/redmine_plugins_helper/fix_migrations.rb
+  - lib/redmine_plugins_helper/status_migrations.rb
+  - spec/spec_helper/logged_users.rb
+Lint/SymbolConversion:
+  Exclude:
+  - spec/spec_helper/plugins_test_configs.rb
 Metrics/BlockLength:
   Exclude:
-    - lib/tasks/*.rake
-    - spec/**/*.rb
-
-Style/Documentation:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
+  - lib/tasks/redmine.rake
+Rails/ActiveSupportOnLoad:
+  Exclude:
+  - lib/redmine_plugins_helper/patches/test_case_patch.rb
+Rails/ContentTag:
+  Exclude:
+  - lib/redmine_plugins_helper/hooks/add_assets.rb
+Rails/FilePath:
+  Exclude:
+  - spec/lib/redmine_plugins_helper/patches/redmine/plugin_patch_spec.rb
+  - spec/spec_helper.rb
+Rails/FindEach:
+  Exclude:
+  - init.rb
+Rails/RedundantActiveRecordAllMethod:
+  Exclude:
+  - lib/redmine_plugins_helper/migration/database.rb
+  - spec/lib/redmine_plugins_helper/fix_migrations_spec.rb
+Style/DocumentDynamicEvalDefinition:
+  Exclude:
+  - lib/redmine_plugins_helper/patches/redmine/plugin_patch/assets.rb
+Style/FetchEnvVar:
+  Exclude:
+  - lib/tasks/redmine.rake
+Style/MapToHash:
+  Exclude:
+  - spec/lib/redmine_plugins_helper/fix_migrations_spec.rb
+Style/RedundantAssignment:
+  Exclude:
+  - lib/redmine_plugins_helper/settings.rb
+Style/RedundantBegin:
+  Exclude:
+  - lib/redmine_plugins_helper/patches/redmine/plugin_migration_context.rb
+Style/RedundantConstantBase:
+  Exclude:
+  - Gemfile
+  - bin/rspec
+  - config/initializers/ruby_2_7_rails_4_column_dumper.rb
+  - init.rb
+  - lib/redmine_plugins_helper/patches/redmine/plugin_migration_context.rb
+  - lib/redmine_plugins_helper/patches/redmine/plugin_patch.rb
+  - lib/tasks/redmine.rake
+  - lib/tasks/redmine_plugins_helper.rake
+  - redmine_plugins_helper.gemspec
+  - spec/lib/redmine_plugins_helper/fix_migrations_spec.rb
+  - spec/lib/redmine_plugins_helper/patches/redmine/plugin_patch_spec.rb
+  - spec/spec_helper/logged_users.rb
+  - spec/spec_helper/plugins_test_configs.rb
+  - spec/spec_helper/test_helper.rb
+  - spec/spec_helper/user_current_patch.rb
+  - spec/spec_helper.rb
+Style/RedundantRegexpEscape:
+  Exclude:
+  - lib/redmine_plugins_helper/migration/code.rb
+  - lib/redmine_plugins_helper/migration/database.rb
+Style/RedundantStringEscape:
+  Exclude:
+  - lib/redmine_plugins_helper/test_tasks/minitest.rb
+Style/SafeNavigation:
+  Exclude:
+  - spec/spec_helper/plugins_test_configs.rb

@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,lib}/**/*', 'init.rb']
 
   s.add_dependency 'bigdecimal', '~> 1.4', '>= 1.4.4'
+  s.add_dependency 'eac_rails_gem_support', '~> 0.9'
   s.add_dependency 'eac_ruby_utils', '~> 0.120'
   s.add_dependency 'launchy', '~> 2.5', '>= 2.5.2'
   s.add_dependency 'rspec-rails', '~> 5.1', '>= 5.1.2'

@@ -18,9 +18,9 @@ namespace :redmine do # rubocop:disable Metrics/BlockLength
   namespace :plugins do # rubocop:disable Metrics/BlockLength
     desc 'Migrates installed plugins.'
     task migrate: :environment do
-      name = ENV['NAME']
+      name = ENV.fetch('NAME', nil)
       version = nil
-      version_string = ENV['VERSION']
+      version_string = ENV.fetch('VERSION', nil)
       if version_string
         if version_string =~ /^\d+$/
           version = version_string.to_i

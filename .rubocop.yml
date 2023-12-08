@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/FetchEnvVar:
-  Exclude:
-  - lib/tasks/redmine.rake
 Style/MapToHash:
   Exclude:
   - spec/lib/redmine_plugins_helper/fix_migrations_spec.rb

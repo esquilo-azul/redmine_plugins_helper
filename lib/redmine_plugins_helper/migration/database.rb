@@ -14,7 +14,7 @@ module RedminePluginsHelper
         # @return [Enumerable<RedminePluginsHelper::Migration>]
         def from_database
           ::ActiveRecord::SchemaMigration.create_table
-          ::ActiveRecord::SchemaMigration.all.pluck(:version).map do |version|
+          ::ActiveRecord::SchemaMigration.pluck(:version).map do |version|
             from_database_version(version)
           end
         end

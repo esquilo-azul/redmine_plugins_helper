@@ -60,6 +60,6 @@ require 'redmine_plugins_helper/fix_migrations'
   end
 
   def sorted_database_versions
-    ::ActiveRecord::SchemaMigration.all.order(version: :asc).pluck(:version)
+    ::ActiveRecord::SchemaMigration.order(version: :asc).pluck(:version)
   end
 end

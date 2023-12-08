@@ -10,8 +10,8 @@ module RedminePluginsHelper
       private
 
       def plugins_autoload_stylesheet_tag
-        tag('link', media: 'all', rel: 'stylesheet',
-                    href: asset_path('assets/plugins_autoload.css'))
+        tag.link(media: 'all', rel: 'stylesheet',
+                 href: asset_path('assets/plugins_autoload.css'))
       end
 
       def plugins_autoload_script_tag

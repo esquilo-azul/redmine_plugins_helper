@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Rails/ContentTag:
-  Exclude:
-  - lib/redmine_plugins_helper/hooks/add_assets.rb
 Rails/FilePath:
   Exclude:
   - spec/lib/redmine_plugins_helper/patches/redmine/plugin_patch_spec.rb

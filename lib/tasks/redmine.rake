@@ -2,7 +2,7 @@
 
 Rake::Task['redmine:plugins:migrate'].clear
 
-namespace :redmine do
+namespace :redmine do # rubocop:disable Metrics/BlockLength
   desc 'Run migrations of core Redmine and installed plugins.'
   task migrate: ['db:migrate', 'redmine:plugins:migrate:fix', 'redmine:plugins:migrate']
 
@@ -15,7 +15,7 @@ namespace :redmine do
 
   task version: 'version:show'
 
-  namespace :plugins do
+  namespace :plugins do # rubocop:disable Metrics/BlockLength
     desc 'Migrates installed plugins.'
     task migrate: :environment do
       name = ENV['NAME']

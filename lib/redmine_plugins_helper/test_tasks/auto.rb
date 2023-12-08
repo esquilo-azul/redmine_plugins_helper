@@ -10,7 +10,7 @@ module RedminePluginsHelper
       TESTERS = {
         minitest: 'test/**/*_test.rb',
         rspec: 'spec/**/*_spec.rb'
-      }
+      }.freeze
 
       enable_simple_cache
 
@@ -19,9 +19,7 @@ module RedminePluginsHelper
         return unless available_testers.any?(&:available?)
 
         available_testers.each(&:register)
-
-        ::Rake::Task.new(task_full_name)
-        ::Rake::Task[task_full_name].enhance available_testers.map(&:name)
+        ::Rake::Task.define_task(task_full_name => available_testers.map(&:name))
       end
 
       private
@@ -32,6 +30,8 @@ module RedminePluginsHelper
           ::RedminePluginsHelper::TestTasks::Auto::Tester.new(self, name, tests_pattern)
         end.select(&:available?)
       end
+
+      require_sub __FILE__
     end
   end
 end

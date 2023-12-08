@@ -6,7 +6,7 @@ abort('The Rails environment is not running in test mode!') unless Rails.env.tes
 require 'rspec/rails'
 
 RSpec.configure do |config|
-  config.fixture_path = ::Rails.root.join('test', 'fixtures')
+  config.fixture_path = ::Rails.root.join('test/fixtures')
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

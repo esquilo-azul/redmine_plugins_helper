@@ -4,8 +4,7 @@ Rake::Task['redmine:plugins:migrate'].clear
 
 namespace :redmine do
   desc 'Run migrations of core Redmine and installed plugins.'
-  task migrate: ['db:migrate', 'redmine:plugins:migrate:fix', 'redmine:plugins:migrate'] do
-  end
+  task migrate: ['db:migrate', 'redmine:plugins:migrate:fix', 'redmine:plugins:migrate']
 
   namespace :version do
     desc 'Shows Redmine\'s version.'

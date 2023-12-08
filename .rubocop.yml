@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Lint/EmptyBlock:
-  Exclude:
-  - lib/tasks/redmine.rake
 Lint/RedundantCopDisableDirective:
   Exclude:
   - config/initializers/ruby_2_7_rails_4_column_dumper.rb

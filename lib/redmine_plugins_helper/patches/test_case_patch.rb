@@ -26,5 +26,7 @@ end
 unless ActiveSupport::TestCase.included_modules.include?(
   RedminePluginsHelper::Patches::TestCasePatch
 )
-  ActiveSupport::TestCase.include RedminePluginsHelper::Patches::TestCasePatch
+  ActiveSupport.on_load(:active_support_test_case) do
+    include RedminePluginsHelper::Patches::TestCasePatch
+  end
 end

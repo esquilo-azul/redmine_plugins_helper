@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/DocumentDynamicEvalDefinition:
-  Exclude:
-  - lib/redmine_plugins_helper/patches/redmine/plugin_patch/assets.rb
 Style/FetchEnvVar:
   Exclude:
   - lib/tasks/redmine.rake

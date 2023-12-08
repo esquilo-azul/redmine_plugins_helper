@@ -12,11 +12,9 @@ module RedminePluginsHelper
           ASSETS_SUBDIRS = %w[stylesheets javascripts images].freeze
 
           ASSETS_SUBDIRS.each do |assert_subdir|
-            class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
-            def #{assert_subdir}_directory
-              ::File.join(directory, 'app', 'assets', '#{assert_subdir}')
+            define_method "#{assert_subdir}_directory" do
+              ::File.join(directory, 'app', 'assets', assert_subdir)
             end
-            RUBY_EVAL
           end
 
           def add_assets_paths

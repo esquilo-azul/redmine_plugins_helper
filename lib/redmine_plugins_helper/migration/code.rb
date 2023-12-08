@@ -21,7 +21,7 @@ module RedminePluginsHelper
         # @return [Enumerable<RedminePluginsHelper::Migration>]
         def from_path_code(path)
           ::Dir["#{path}/*.rb"].map { |p| File.basename(p).match(/0*(\d+)\_/)[1].to_i }.sort
-                               .map { |version| new(PLUGIN_ID_CORE_VALUE, version) }
+            .map { |version| new(PLUGIN_ID_CORE_VALUE, version) }
         end
 
         # @return [Enumerable<RedminePluginsHelper::Migration>]

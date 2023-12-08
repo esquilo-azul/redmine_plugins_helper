@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Layout/LeadingCommentSpace:
-  Exclude:
-  - config/initializers/backport_pg_10_support_to_rails_4.rb
 Layout/LineEndStringConcatenationIndentation:
   Exclude:
   - config/initializers/backport_pg_10_support_to_rails_4.rb

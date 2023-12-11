@@ -5,6 +5,9 @@ require File.expand_path('../../../config/environment', __dir__)
 abort('The Rails environment is not running in test mode!') unless Rails.env.test?
 require 'rspec/rails'
 
+require 'eac_ruby_utils/rspec/default_setup'
+EacRubyUtils::Rspec.default_setup_create(File.expand_path('..', __dir__))
+
 RSpec.configure do |config|
   config.fixture_path = Rails.root.join('test/fixtures')
 

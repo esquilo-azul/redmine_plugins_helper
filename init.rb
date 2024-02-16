@@ -14,6 +14,6 @@ end
 Rails.configuration.to_prepare do
   require_dependency 'redmine_plugins_helper/patches/redmine/plugin_patch'
   require_dependency 'redmine_plugins_helper/patches/redmine/plugin_migration_context'
-  Redmine::Plugin.all.each(&:add_assets_paths) # rubocop:disable Rails/FindEach
-  Redmine::Plugin.all.each(&:load_initializers) # rubocop:disable Rails/FindEach
+  Redmine::Plugin.all.each(&:add_assets_paths)
+  Redmine::Plugin.all.each(&:load_initializers)
 end

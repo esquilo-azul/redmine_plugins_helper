@@ -5,7 +5,7 @@ require 'redmine/plugin'
 module RedminePluginsHelper
   module Patches
     module Redmine
-      module PluginMigrationContextPatch
+      module PluginMigrationContext
         extend ActiveSupport::Concern
 
         def get_all_versions # rubocop:disable Naming/AccessorMethodName
@@ -24,8 +24,8 @@ module RedminePluginsHelper
   end
 end
 
-if Redmine::Plugin.const_defined?('MigrationContext')
+if Redmine::Plugin.const_defined?(:MigrationContext)
   Redmine::Plugin::MigrationContext.prepend(
-    RedminePluginsHelper::Patches::Redmine::PluginMigrationContextPatch
+    RedminePluginsHelper::Patches::Redmine::PluginMigrationContext
   )
 end

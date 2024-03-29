@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'redmine_plugins_helper/patches/redmine/plugin_patch'
+require 'redmine_plugins_helper/patches/redmine/plugin'
 
 RSpec.describe Redmine::Plugin do
   describe '#by_path' do

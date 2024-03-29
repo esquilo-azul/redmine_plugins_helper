@@ -5,14 +5,14 @@ require 'eac_ruby_utils/core_ext'
 module RedminePluginsHelper
   module Patches
     module Redmine
-      module PluginPatch
+      module Plugin
         extend ActiveSupport::Concern
 
         included do
           extend ClassMethods
-          include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Assets
-          prepend ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Dependencies
-          include ::RedminePluginsHelper::Patches::Redmine::PluginPatch::Initializers
+          include ::RedminePluginsHelper::Patches::Redmine::Plugin::Assets
+          prepend ::RedminePluginsHelper::Patches::Redmine::Plugin::Dependencies
+          include ::RedminePluginsHelper::Patches::Redmine::Plugin::Initializers
         end
 
         module ClassMethods
@@ -46,6 +46,6 @@ module RedminePluginsHelper
   end
 end
 
-patch = RedminePluginsHelper::Patches::Redmine::PluginPatch
+patch = RedminePluginsHelper::Patches::Redmine::Plugin
 target = Redmine::Plugin
 target.send(:include, patch) unless target.include?(patch)

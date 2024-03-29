@@ -5,7 +5,7 @@ require 'eac_ruby_utils/core_ext'
 module RedminePluginsHelper
   module Patches
     module Redmine
-      module PluginPatch
+      module Plugin
         module Assets
           common_concern
 

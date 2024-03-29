@@ -12,8 +12,7 @@ Redmine::Plugin.register :redmine_plugins_helper do
 end
 
 Rails.configuration.to_prepare do
-  require_dependency 'redmine_plugins_helper/patches/redmine/plugin_patch'
-  require_dependency 'redmine_plugins_helper/patches/redmine/plugin_migration_context'
+  require_dependency 'redmine_plugins_helper/patches'
   Redmine::Plugin.all.sort.each(&:add_assets_paths)
   Redmine::Plugin.all.sort.each(&:load_initializers)
 end

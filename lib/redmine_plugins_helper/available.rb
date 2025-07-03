@@ -5,7 +5,7 @@ module RedminePluginsHelper
     class << self
       def database?
         ::ActiveRecord::Base.connection
-      rescue ActiveRecord::NoDatabaseError
+      rescue ActiveRecord::NoDatabaseError, PG::ConnectionBad
         false
       else
         true

@@ -5,7 +5,8 @@ require File.expand_path('../../../config/environment', __dir__)
 abort('The Rails environment is not running in test mode!') unless Rails.env.test?
 require 'rspec/rails'
 
-require 'eac_ruby_utils/rspec/default_setup'
+require 'eac_ruby_utils'
+require 'eac_rails_gem_support'
 EacRubyUtils::Rspec.default_setup_create(File.expand_path('..', __dir__))
 
 RSpec.configure do |config|
@@ -24,5 +25,4 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 end
 
-require 'eac_ruby_utils/require_sub'
 EacRubyUtils.require_sub(__FILE__)

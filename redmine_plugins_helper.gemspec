@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'bigdecimal', '~> 1.4', '>= 1.4.4'
-  s.add_dependency 'eac_rails_gem_support', '~> 0.10', '>= 0.10.1'
+  s.add_dependency 'eac_rails_gem_support', '~> 0.11'
   s.add_dependency 'eac_ruby_utils', '~> 0.121'
   s.add_dependency 'launchy', '~> 2.5', '>= 2.5.2'
   s.add_dependency 'sass-rails', '~> 5.1'

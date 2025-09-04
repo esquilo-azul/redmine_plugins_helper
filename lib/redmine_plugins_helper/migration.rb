@@ -19,7 +19,7 @@ module RedminePluginsHelper
       nyi unless plugin?
 
       ::Redmine::Plugin::Migrator.current_plugin = plugin
-      ::Redmine::Plugin::MigrationContext.new(plugin.migration_directory).up do |m|
+      ::Redmine::Plugin::MigrationContext.new(*migrator_context_args).up do |m|
         m.version == version
       end
     end
@@ -48,6 +48,13 @@ module RedminePluginsHelper
     # @return [Boolean]
     def plugin?
       !core?
+    end
+
+    protected
+
+    # @return [Enumerable<Object>]
+    def migrator_context_args
+      [plugin.migration_directory]
     end
   end
 end

@@ -54,7 +54,11 @@ module RedminePluginsHelper
 
     # @return [Enumerable<Object>]
     def migrator_context_args
-      [plugin.migration_directory]
+      if ::Rails.version < '6'
+        [plugin.migration_directory]
+      else
+        [plugin.migration_directory, ActiveRecord::Base.connection.schema_migration]
+      end
     end
   end
 end

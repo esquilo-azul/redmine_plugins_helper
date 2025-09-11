@@ -4,4 +4,7 @@ module RedminePluginsHelper
   AUTHOR = 'Eduardo Henrique Bogoni'
   SUMMARY = 'Helper for Redmine plugins'
   VERSION = '0.15.5'
+
+  module Version
+  end
 end

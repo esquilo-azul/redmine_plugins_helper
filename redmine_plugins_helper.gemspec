@@ -18,5 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_rails_gem_support', '~> 0.11', '>= 0.11.1'
   s.add_dependency 'eac_ruby_utils', '~> 0.130'
   s.add_dependency 'launchy', '~> 2.5', '>= 2.5.2'
+  s.add_dependency 'minitest', '< 6'
   s.add_dependency 'sass-rails', '~> 5.1'
 end

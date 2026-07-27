@@ -8,7 +8,7 @@ module RedminePluginsHelper
       module Plugin
         module Initializers
           def load_initializers
-            Dir["#{initializers_directory}/*.rb"].sort.each { |f| require f }
+            Dir["#{initializers_directory}/*.rb"].each { |f| require f }
           end
 
           private

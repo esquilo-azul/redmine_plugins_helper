@@ -32,11 +32,11 @@ module RedminePluginsHelper
             parts[1].to_sym
           end
 
-          def post_register(plugin_name, &block)
+          def post_register(plugin_name, &)
             plugin = registered_plugins[plugin_name]
             raise "Plugin not registered: #{plugin_name}" unless plugin
 
-            plugin.instance_eval(&block)
+            plugin.instance_eval(&)
           end
         end
 

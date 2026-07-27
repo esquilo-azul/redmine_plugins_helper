@@ -10,7 +10,7 @@ require 'eac_rails_gem_support'
 EacRubyUtils::Rspec.default_setup_create(File.expand_path('..', __dir__))
 
 RSpec.configure do |config|
-  config.fixture_path = Rails.root.join('test/fixtures')
+  config.fixture_paths = [Rails.root.join('test/fixtures')]
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

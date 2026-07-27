@@ -29,18 +29,22 @@ module RedminePluginsHelper
     end
 
     def database_version?(version)
-      ::ActiveRecord::SchemaMigration.where(version: version).any?
+      schema_migration.versions.include?(version)
     end
 
     def remove_plugin_version(source_version)
       Rails.logger.info("Removing #{source_version}")
-      ::ActiveRecord::SchemaMigration.find_by(version: source_version).destroy!
+      schema_migration.delete_version(source_version)
     end
 
     def move_plugin_version(source_version, target_version)
       Rails.logger.info("Moving #{source_version} to plugin \"#{target_version}\"")
-      ::ActiveRecord::SchemaMigration.where(version: source_version)
-        .update_all(version: target_version)
+      schema_migration.delete_version(source_version)
+      schema_migration.create_version(target_version)
+    end
+
+    def schema_migration
+      @schema_migration ||= ::ActiveRecord::Base.connection_pool.schema_migration
     end
 
     def local_version(timestamp)

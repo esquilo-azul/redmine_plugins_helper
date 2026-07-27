@@ -3,11 +3,14 @@
 require 'redmine_plugins_helper/fix_migrations'
 
 RSpec.describe RedminePluginsHelper::FixMigrations do
+  let(:schema_migration) { ActiveRecord::Base.connection_pool.schema_migration }
+
   before do
-    ActiveRecord::SchemaMigration.delete_all
+    schema_migration.create_table
+    schema_migration.delete_all_versions
   end
 
-  it { expect(ActiveRecord::SchemaMigration.count).to eq(0) }
+  it { expect(schema_migration.count).to eq(0) }
 
   context 'with database versions' do
     let(:database_versions) do
@@ -17,7 +20,7 @@ RSpec.describe RedminePluginsHelper::FixMigrations do
 
     before do
       database_versions.each do |version|
-        ActiveRecord::SchemaMigration.create!(version: version)
+        schema_migration.create_version(version)
       end
     end
 
@@ -59,6 +62,6 @@ RSpec.describe RedminePluginsHelper::FixMigrations do
   end
 
   def sorted_database_versions
-    ActiveRecord::SchemaMigration.order(version: :asc).pluck(:version)
+    schema_migration.versions
   end
 end

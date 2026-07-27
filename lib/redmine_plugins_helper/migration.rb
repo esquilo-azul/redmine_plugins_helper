@@ -26,8 +26,9 @@ module RedminePluginsHelper
 
     # @return [Boolean]
     def applied?
-      ::ActiveRecord::SchemaMigration.create_table
-      ::ActiveRecord::SchemaMigration.where(version: database_version).any?
+      schema_migration = ::ActiveRecord::Base.connection_pool.schema_migration
+      schema_migration.create_table
+      schema_migration.versions.include?(database_version)
     end
 
     # @return [String]
@@ -57,7 +58,7 @@ module RedminePluginsHelper
       if ::Rails.version < '6'
         [plugin.migration_directory]
       else
-        [plugin.migration_directory, ActiveRecord::Base.connection.schema_migration]
+        [plugin.migration_directory, ActiveRecord::Base.connection_pool.schema_migration]
       end
     end
   end

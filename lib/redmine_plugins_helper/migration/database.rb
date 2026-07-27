@@ -13,8 +13,9 @@ module RedminePluginsHelper
       module ClassMethods
         # @return [Enumerable<RedminePluginsHelper::Migration>]
         def from_database
-          ::ActiveRecord::SchemaMigration.create_table
-          ::ActiveRecord::SchemaMigration.pluck(:version).map do |version|
+          schema_migration = ::ActiveRecord::Base.connection_pool.schema_migration
+          schema_migration.create_table
+          schema_migration.versions.map do |version|
             from_database_version(version)
           end
         end

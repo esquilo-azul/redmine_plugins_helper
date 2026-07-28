@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,lib}/**/*', 'init.rb']
   s.required_ruby_version = '>= 2.7'
 
-  s.add_dependency 'eac_rails_gem_support', '~> 0.12', '>= 0.12.1'
-  s.add_dependency 'eac_ruby_utils', '~> 0.130'
+  s.add_dependency 'eac_rails_gem_support', '~> 0.13', '>= 0.13.1'
+  s.add_dependency 'eac_ruby_utils', '~> 0.131', '>= 0.131.4'
   s.add_dependency 'launchy', '~> 2.5', '>= 2.5.2'
   s.add_dependency 'sass-rails', '~> 5.1'
 end

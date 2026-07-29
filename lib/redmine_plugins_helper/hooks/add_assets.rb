@@ -10,12 +10,19 @@ module RedminePluginsHelper
       private
 
       def plugins_autoload_stylesheet_tag
-        tag.link(media: 'all', rel: 'stylesheet',
-                 href: asset_path('assets/plugins_autoload.css'))
+        tag.link(
+          media: 'all',
+          rel: 'stylesheet',
+          href: asset_path(::RedminePluginsHelper::PluginsAutoloadAssets::CSS_OUTPUT_SUBPATH)
+        )
       end
 
       def plugins_autoload_script_tag
-        content_tag('script', "\n", src: asset_path('assets/plugins_autoload.js'))
+        content_tag(
+          'script',
+          "\n",
+          src: asset_path(::RedminePluginsHelper::PluginsAutoloadAssets::JS_OUTPUT_SUBPATH)
+        )
       end
     end
   end

@@ -19,4 +19,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_ruby_utils', '~> 0.131', '>= 0.131.4'
   s.add_dependency 'launchy', '~> 2.5', '>= 2.5.2'
   s.add_dependency 'sassc-rails', '~> 2.1', '>= 2.1.2'
+  s.add_dependency 'sprockets', '~> 4.2', '>= 4.2.2'
 end

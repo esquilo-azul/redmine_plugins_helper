@@ -40,7 +40,7 @@ module RedminePluginsHelper
             extensions.each do |extension|
               ['', '.erb'].each do |erb_extension|
                 path = ::File.join(assets_directory, "#{id}.#{extension}#{erb_extension}")
-                return id if ::File.exist?(path)
+                return id.to_s if ::File.exist?(path)
               end
             end
             nil

@@ -3,7 +3,7 @@
 module RedminePluginsHelper
   AUTHOR = 'Eduardo Henrique Bogoni'
   SUMMARY = 'Helper for Redmine plugins'
-  VERSION = '0.16.3'
+  VERSION = '0.17.0'
 
   module Version
   end

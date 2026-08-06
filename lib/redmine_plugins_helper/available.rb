@@ -4,7 +4,7 @@ module RedminePluginsHelper
   module Available
     class << self
       def database?
-        ::ActiveRecord::Base.connection
+        ::ActiveRecord::Base.connection.table_exists?('any_table_name')
       rescue ActiveRecord::NoDatabaseError, PG::ConnectionBad
         false
       else

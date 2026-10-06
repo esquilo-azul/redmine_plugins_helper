@@ -21,6 +21,11 @@ module RedminePluginsHelper
             super
           end
 
+          # @return [Array<Redmine::Plugin>]
+          def dependencies
+            dependencies_ids.map { |plugin_id| ::Redmine::Plugin.find(plugin_id) }
+          end
+
           # @return [Array<Symbol>]
           def dependencies_ids
             load_dependencies_from_file

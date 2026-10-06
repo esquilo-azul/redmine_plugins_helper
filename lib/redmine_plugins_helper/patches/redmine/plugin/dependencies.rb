@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'tsort'
+
 module RedminePluginsHelper
   module Patches
     module Redmine
@@ -8,6 +10,16 @@ module RedminePluginsHelper
           common_concern
 
           DEPENDENCIES_FILE_BASENAMES = %w[yml yaml].map { |e| "dependencies.#{e}" }
+
+          module ClassMethods
+            # @return [Array<Redmine::Plugin>]
+            def sorted_by_dependencies
+              ::TSort.tsort(
+                all.method(:each),
+                ->(plugin, &block) { plugin.dependencies.each(&block) }
+              )
+            end
+          end
 
           # @param other [Redmine::Plugin]
           # @return [Integer]

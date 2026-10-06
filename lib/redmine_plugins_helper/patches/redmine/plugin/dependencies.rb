@@ -21,18 +21,6 @@ module RedminePluginsHelper
             end
           end
 
-          # @param other [Redmine::Plugin]
-          # @return [Integer]
-          def <=>(other)
-            so = dependency?(other)
-            os = other.dependency?(self)
-
-            return 1 if so && !os
-            return -1 if !so && os
-
-            super
-          end
-
           # @return [Array<Redmine::Plugin>]
           def dependencies
             dependencies_ids.map { |plugin_id| ::Redmine::Plugin.find(plugin_id) }
@@ -42,13 +30,6 @@ module RedminePluginsHelper
           def dependencies_ids
             load_dependencies_from_file
             dependencies_hash.keys
-          end
-
-          # @param other [Redmine::Plugin]
-          # @return [Boolean]
-          def dependency?(other)
-            load_dependencies_from_file
-            recursive_dependencies_ids.include?(other.id)
           end
 
           # @param plugin_name [Symbol]
@@ -90,12 +71,6 @@ module RedminePluginsHelper
             dependencies_from_file
               .each { |plugin_name, arg| requires_redmine_plugin(plugin_name, arg) }
             @dependencies_from_file_loaded = true
-          end
-
-          # @return [Set<Symbol>]
-          def recursive_dependencies_ids
-            ::EacRubyUtils::RecursiveBuilder
-              .new(id) { |plugin_id| ::Redmine::Plugin.find(plugin_id).dependencies_ids }.result
           end
         end
       end

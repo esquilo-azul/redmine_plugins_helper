@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
 require 'redmine_plugins_helper/test_tasks/base'
 require 'rspec/core/rake_task'
 

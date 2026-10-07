@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-
 module RedminePluginsHelper
   class Migrate
     common_constructor :plugin_name, :migration_version do

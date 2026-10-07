@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/yaml'
-
 module RedminePluginsHelper
   module Patches
     module Redmine

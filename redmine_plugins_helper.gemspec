@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 3.2' # rubocop:disable Gemspec/RequiredRubyVersion
 
   s.add_dependency 'dartsass-sprockets', '~> 3.2', '>= 3.2.1'
-  s.add_dependency 'eac_rails_gem_support', '~> 0.15', '>= 0.15.1'
+  s.add_dependency 'eac_rails_gem_support', '~> 0.15', '>= 0.15.3'
   s.add_dependency 'eac_ruby_utils', '~> 0.134', '>= 0.134.1'
   s.add_dependency 'launchy', '~> 2.5', '>= 2.5.2'
   s.add_dependency 'sprockets', '~> 4.4', '>= 4.4.1'
